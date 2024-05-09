@@ -1,7 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 import authRouter from "./routes/auth.routes.js";
+import messageRouter from "./routes/message.routes.js";
 import connectDB from "./confg/db.js";
 dotenv.config();
 
@@ -9,8 +11,10 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+app.use("/api/message", messageRouter);
 
 // app.get("/", (req, res) => {
 //   res.send(`Hey Botty! Running on http://localhost:${PORT}`);
